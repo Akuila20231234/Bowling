@@ -16,18 +16,23 @@ class BowlingGame:
             elif self.is_spare(roll_index):
                 total_score += self.spare_score(roll_index)
                 roll_index += 2
+            else:
+                total_score += self.frame_score(roll_index)
+                roll_index += 2
 
-    def isStrike(self, rollIndex):
-        return self.rolls[rollIndex] == 10
+        return total_score
 
-    def isSpare(self, rollIndex):
-        return self.rolls[rollIndex] + self.rolls[rollIndex + 1] == 10
+    def is_strike(self, roll_index):
+        return self.rolls[roll_index] == 10
 
-    def stickeScore(self, rollIndex):
-        return 10 + self.rolls[rollIndex + 1] + self.rolls[rollIndex + 2]
+    def is_spare(self, roll_index):
+        return self.rolls[roll_index] + self.rolls[roll_index + 1] == 10
 
-    def spareScore(self, rollIndex):
-        return 10 + self.rolls[rollIndex + 2]
+    def strike_score(self, roll_index):
+        return 10 + self.rolls[roll_index + 1] + self.rolls[roll_index + 2]
 
-    def frameScore(self, rollIndex):
-        return self.rolls[rollIndex] + self.rolls[rollIndex + 1]
+    def spare_score(self, roll_index):
+        return 10 + self.rolls[roll_index + 2]
+
+    def frame_score(self, roll_index):
+        return self.rolls[roll_index] + self.rolls[roll_index + 1]
